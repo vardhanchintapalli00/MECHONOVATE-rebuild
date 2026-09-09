@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MECHONOVATE</title>
+  <link rel="icon" href="assets/images/logo/gear.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="gate-active">
+
+  <!-- Reusable gear shapes (referenced via <use>) -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <!-- dimensional metal shading for gears: a light source top-left, fading
+           to a dark shadowed edge, so the gears read as solid cast metal
+           instead of flat colored silhouettes -->
+      <radialGradient id="metalGold" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#fff2d2"></stop>
+        <stop offset="35%" stop-color="#f4d998"></stop>
+        <stop offset="70%" stop-color="#d9a44a"></stop>
+        <stop offset="100%" stop-color="#6b4a1f"></stop>
+      </radialGradient>
+      <radialGradient id="metalSteel" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#f4f7fb"></stop>
+        <stop offset="35%" stop-color="#d7e3ee"></stop>
+        <stop offset="70%" stop-color="#8fa6bd"></stop>
+        <stop offset="100%" stop-color="#33404f"></stop>
+      </radialGradient>
+      <radialGradient id="metalDark" cx="35%" cy="28%" r="80%">
+        <stop offset="0%" stop-color="#4a5568"></stop>
+        <stop offset="60%" stop-color="#2a3140"></stop>
+        <stop offset="100%" stop-color="#12161d"></stop>
+      </radialGradient>
+      <path id="gear8"
+        d="M 100.00,32.00 L 121.05,2.24 L 154.24,15.99 L 148.08,51.92 L 184.01,45.76 L 197.76,78.95 L 168.00,100.00 L 197.76,121.05 L 184.01,154.24 L 148.08,148.08 L 154.24,184.01 L 121.05,197.76 L 100.00,168.00 L 78.95,197.76 L 45.76,184.01 L 51.92,148.08 L 15.99,154.24 L 2.24,121.05 L 32.00,100.00 L 2.24,78.95 L 15.99,45.76 L 51.92,51.92 L 45.76,15.99 L 78.95,2.24 Z M 100.00,74.00 L 106.73,74.89 L 113.00,77.48 L 118.38,81.62 L 122.52,87.00 L 125.11,93.27 L 126.00,100.00 L 125.11,106.73 L 122.52,113.00 L 118.38,118.38 L 113.00,122.52 L 106.73,125.11 L 100.00,126.00 L 93.27,125.11 L 87.00,122.52 L 81.62,118.38 L 77.48,113.00 L 74.89,106.73 L 74.00,100.00 L 74.89,93.27 L 77.48,87.00 L 81.62,81.62 L 87.00,77.48 L 93.27,74.89 Z">
+      </path>
+      <path id="gear10"
+        d="M 100.00,32.00 L 116.88,1.44 L 144.28,10.34 L 139.97,44.99 L 171.59,30.18 L 188.52,53.48 L 164.67,78.99 L 198.96,85.60 L 198.96,114.40 L 164.67,121.01 L 188.52,146.52 L 171.59,169.82 L 139.97,155.01 L 144.28,189.66 L 116.88,198.56 L 100.00,168.00 L 83.12,198.56 L 55.72,189.66 L 60.03,155.01 L 28.41,169.82 L 11.48,146.52 L 35.33,121.01 L 1.04,114.40 L 1.04,85.60 L 35.33,78.99 L 11.48,53.48 L 28.41,30.18 L 60.03,44.99 L 55.72,10.34 L 83.12,1.44 Z M 100.00,74.00 L 106.73,74.89 L 113.00,77.48 L 118.38,81.62 L 122.52,87.00 L 125.11,93.27 L 126.00,100.00 L 125.11,106.73 L 122.52,113.00 L 118.38,118.38 L 113.00,122.52 L 106.73,125.11 L 100.00,126.00 L 93.27,125.11 L 87.00,122.52 L 81.62,118.38 L 77.48,113.00 L 74.89,106.73 L 74.00,100.00 L 74.89,93.27 L 77.48,87.00 L 81.62,81.62 L 87.00,77.48 L 93.27,74.89 Z">
+      </path>
+      <path id="gear14"
+        d="M 100.00,32.00 L 112.09,0.73 L 132.18,5.32 L 129.50,38.73 L 153.96,15.81 L 170.07,28.66 L 153.16,57.60 L 185.15,47.56 L 194.09,66.13 L 166.30,84.87 L 199.47,89.70 L 199.47,110.30 L 166.30,115.13 L 194.09,133.87 L 185.15,152.44 L 153.16,142.40 L 170.07,171.34 L 153.96,184.19 L 129.50,161.27 L 132.18,194.68 L 112.09,199.27 L 100.00,168.00 L 87.91,199.27 L 67.82,194.68 L 70.50,161.27 L 46.04,184.19 L 29.93,171.34 L 46.84,142.40 L 14.85,152.44 L 5.91,133.87 L 33.70,115.13 L 0.53,110.30 L 0.53,89.70 L 33.70,84.87 L 5.91,66.13 L 14.85,47.56 L 46.84,57.60 L 29.93,28.66 L 46.04,15.81 L 70.50,38.73 L 67.82,5.32 L 87.91,0.73 Z M 100.00,74.00 L 106.73,74.89 L 113.00,77.48 L 118.38,81.62 L 122.52,87.00 L 125.11,93.27 L 126.00,100.00 L 125.11,106.73 L 122.52,113.00 L 118.38,118.38 L 113.00,122.52 L 106.73,125.11 L 100.00,126.00 L 93.27,125.11 L 87.00,122.52 L 81.62,118.38 L 77.48,113.00 L 74.89,106.73 L 74.00,100.00 L 74.89,93.27 L 77.48,87.00 L 81.62,81.62 L 87.00,77.48 L 93.27,74.89 Z">
+      </path>
+      <path id="gear18"
+        d="M 100.00,32.00 L 109.41,0.44 L 125.21,3.23 L 123.26,36.10 L 142.89,9.67 L 156.78,17.69 L 143.71,47.91 L 171.20,29.78 L 181.51,42.07 L 158.89,66.00 L 190.92,58.37 L 196.41,73.44 L 166.97,88.19 L 199.68,91.98 L 199.68,108.02 L 166.97,111.81 L 196.41,126.56 L 190.92,141.63 L 158.89,134.00 L 181.51,157.93 L 171.20,170.22 L 143.71,152.09 L 156.78,182.31 L 142.89,190.33 L 123.26,163.90 L 125.21,196.77 L 109.41,199.56 L 100.00,168.00 L 90.59,199.56 L 74.79,196.77 L 76.74,163.90 L 57.11,190.33 L 43.22,182.31 L 56.29,152.09 L 28.80,170.22 L 18.49,157.93 L 41.11,134.00 L 9.08,141.63 L 3.59,126.56 L 33.03,111.81 L 0.32,108.02 L 0.32,91.98 L 33.03,88.19 L 3.59,73.44 L 9.08,58.37 L 41.11,66.00 L 18.49,42.07 L 28.80,29.78 L 56.29,47.91 L 43.22,17.69 L 57.11,9.67 L 76.74,36.10 L 74.79,3.23 L 90.59,0.44 Z M 100.00,74.00 L 106.73,74.89 L 113.00,77.48 L 118.38,81.62 L 122.52,87.00 L 125.11,93.27 L 126.00,100.00 L 125.11,106.73 L 122.52,113.00 L 118.38,118.38 L 113.00,122.52 L 106.73,125.11 L 100.00,126.00 L 93.27,125.11 L 87.00,122.52 L 81.62,118.38 L 77.48,113.00 L 74.89,106.73 L 74.00,100.00 L 74.89,93.27 L 77.48,87.00 L 81.62,81.62 L 87.00,77.48 L 93.27,74.89 Z">
+      </path>
+    </defs>
+  </svg>
+
+  <!-- ============ INTRO VIDEO GATE ============ -->
+  <!-- Plays automatically as soon as the page loads (muted, as every browser
+       requires for autoplay). Tapping the mute button turns sound on. Tapping
+       skip jumps straight to the site; otherwise it opens the site itself
+       the moment the video finishes. -->
+  <div id="intro-gate">
+    <video id="intro-video" src="assets/video/intro.mp4" autoplay playsinline preload="auto"></video>
+    <div class="intro-vignette"></div>
+    <div class="intro-controls">
+      <button id="intro-mute" class="intro-btn-small" type="button">🔇 Sound off</button>
+      <button id="intro-skip" class="intro-btn-small" type="button">Skip intro ⏭</button>
+    </div>
+  </div>
+
+  <div id="cursor-glow"></div>
+
+  <div id="preloader">
+    <img src="assets/images/logo/gear.webp" alt="">
+    <div class="preload-bar"></div>
+    <div class="preload-label">Spinning up the gears</div>
+  </div>
+
+  <!-- decorative side rails fill wide-screen margins -->
+  <div class="side-rail left" aria-hidden="true">
+    <svg class="rail-gear gear-svg gear-cw" viewBox="0 0 200 200" style="animation-duration:14s;">
+      <use href="#gear8" class="gear-fill-steel"></use>
+    </svg>
+    <div class="rail-ticks">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="rail-label">NSRIT · MECH ENGG</div>
+  </div>
+  <div class="side-rail right" aria-hidden="true">
+    <svg class="rail-gear gear-svg gear-ccw" viewBox="0 0 200 200" style="animation-duration:11s;">
+      <use href="#gear8" class="gear-fill-steel"></use>
+    </svg>
+    <div class="rail-ticks">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="rail-label">24 HRS · BUILD WINDOW</div>
+  </div>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="brand">
+        <span class="logo-mark logo-nav">
+          <img src="assets/images/logo/mech.webp" alt="MECH">
+          <img class="logo-gear" src="assets/images/logo/gear.webp" alt="O">
+          <img src="assets/images/logo/novate.webp" alt="NOVATE">
+        </span>
+      </a>
+      <ul id="navlinks">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#themes" class="nav-link">Themes</a></li>
+        <li><a href="#flow" class="nav-link">Flow</a></li>
+        <li><a href="#rules" class="nav-link">Rules</a></li>
+        <li><a href="#prizes" class="nav-link">Prize</a></li>
+        <li><a href="#coordinators" class="nav-link">Coordinators</a></li>
+        <li><a href="#venue" class="nav-link">Venue</a></li>
+        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+        <li><a href="#register" class="nav-cta">Register</a></li>
+      </ul>
+      <div id="nav-indicator"></div>
+      <button id="nav-toggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-rig" aria-hidden="true">
+      <img class="r1 gear-real gear-cw" src="assets/images/gears/real-gear-1.webp" alt="">
+      <img class="r2 gear-real gear-ccw" src="assets/images/gears/real-gear-1.webp" alt="">
+      <img class="r3 gear-real gear-ccw" src="assets/images/gears/real-gear-1.webp" alt="">
+      <img class="r4 gear-real gear-cw" src="assets/images/gears/real-gear-1.webp" alt="">
+      <img class="r5 gear-real gear-cw" src="assets/images/gears/real-gear-1.webp" alt="">
+      <img class="r6 gear-real gear-ccw" src="assets/images/gears/real-gear-1.webp" alt="">
+    </div>
+    <div class="hero-shaft" aria-hidden="true">
+      <div class="rod"></div>
+      <div class="piston p1"></div>
+      <div class="piston p2"></div>
+      <div class="piston p3"></div>
+    </div>
+    <div class="wrap">
+      <div class="eyebrow-tag"><span class="dot"></span>DEPARTMENT OF MECHANICAL ENGINEERING</div>
+      <div class="hero-logo-wrap">
+        <span class="logo-mark logo-hero">
+          <img src="assets/images/logo/mech.webp" alt="MECH">
+          <img class="logo-gear" src="assets/images/logo/gear.webp" alt="O">
+          <img src="assets/images/logo/novate.webp" alt="NOVATE">
+        </span>
+      </div>
+      <div class="hero-tagline grad-text">CHALLENGE YOUR MIND &nbsp;⚙&nbsp; CREATE YOUR FUTURE</div>
+      <div class="hero-actions">
+        <a href="#register" class="btn btn-primary">Register your team</a>
+        <a href="#themes" class="btn btn-ghost">Explore the themes</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num" data-count="24" data-suffix=" hrs">0 hrs</div>
+          <div class="lbl">Build window</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" data-count="9" data-pad="2">00</div>
+          <div class="lbl">Open themes</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" data-count="50000" data-prefix="₹">₹0</div>
+          <div class="lbl">Prize pool</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <div class="line"></div><span>Scroll</span>
+    </div>
+  </section>
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker-track">
+      <span>IDEATE</span><span>DESIGN</span><span>DEVELOP</span><span>PROTOTYPE</span><span>FABRICATE</span><span>ITERATE</span><span>BUILD</span>
+      <span>IDEATE</span><span>DESIGN</span><span>DEVELOP</span><span>PROTOTYPE</span><span>FABRICATE</span><span>ITERATE</span><span>BUILD</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="blueprint"></div>
+    <div class="about-rig" aria-hidden="true">
+      <img class="a1 gear-real gear-cw" src="assets/images/gears/real-gear-1.webp" alt="">
+      <img class="a2 gear-real gear-ccw" src="assets/images/gears/real-gear-1.webp" alt="">
+    </div>
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">ABOUT THE CHALLENGE</div>
+        <h2 class="sec-title">Where a sketch becomes a working prototype</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <p>MECHONOVATE is a 24-hour product development challenge hosted at Nadimpalli Satyanarayana Raju Institute of
+            Technology (NSRIT) by the DEPARTMENT OF MECHANICAL ENGINEERING, built for students who want to take up an
+            idea from a rough sketch to a working model
+            built under real time pressure.</p>
+          <p>Teams pick a theme, define a real-world problem inside it, and spend the next day and a half designing,
+            prototyping, and defending their solution in front of a panel of engineers and faculty.</p>
+          <ul class="org-list">
+            <li>Hosted at NSRIT (Autonomous)</li>
+          </ul>
+        </div>
+        <div class="about-panel fade-in">
+          <h3>Format at a glance</h3>
+          <div class="format-row"><span>Duration</span><span>24 hours</span></div>
+          <div class="format-row"><span>Team size</span><span>2–5 members</span></div>
+          <div class="format-row"><span>Stages</span><span>Ideate → Design → Develop → Prototype</span></div>
+          <div class="format-row"><span>Eligibility</span><span>All under graduate students</span></div>
+          <div class="format-row"><span>Prize pool</span><span>₹50,000</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gear-divider" aria-hidden="true">
+    <div class="divider-line"></div>
+    <svg class="gear-svg gear-cw" viewBox="0 0 200 200" style="animation-duration:5s;">
+      <use href="#gear10" class="gear-fill-plasma"></use>
+    </svg>
+    <svg class="gear-svg gear-ccw" viewBox="0 0 200 200" style="animation-duration:4s;">
+      <use href="#gear8" class="gear-fill-volt"></use>
+    </svg>
+    <div class="divider-line right"></div>
+  </div>
+
+  <!-- THEMES -->
+  <section id="themes">
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">09 THEMES</div>
+        <h2 class="sec-title">Pick a lane, then build past it</h2>
+        <p class="sec-desc">Every team commits to one theme before the clock starts. The theme sets the problem space —
+          how far you push inside it is up to you.</p>
+      </div>
+      <div class="theme-grid fade-in">
+        <div class="theme-card" data-theme="01">
+          <div class="theme-num">01</div>
+          <div class="theme-name">Agritech And Rural Innovation</div><button class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="02">
+          <div class="theme-num">02</div>
+          <div class="theme-name">Drone Technology</div><button class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="03">
+          <div class="theme-num">03</div>
+          <div class="theme-name">Industry 5.0</div><button class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="04">
+          <div class="theme-num">04</div>
+          <div class="theme-name">Smart Robotics And Automation</div><button class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="05">
+          <div class="theme-num">05</div>
+          <div class="theme-name">Health Care And Assistive Technology With A.I.</div><button
+            class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="06">
+          <div class="theme-num">06</div>
+          <div class="theme-name">Renewable Energy And E.V's</div><button class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="07">
+          <div class="theme-num">07</div>
+          <div class="theme-name">Sustainable Manufacturing And Waste Management</div><button
+            class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="08">
+          <div class="theme-num">08</div>
+          <div class="theme-name">Smart Automation</div><button class="theme-details-btn">Details</button>
+        </div>
+        <div class="theme-card" data-theme="09">
+          <div class="theme-num">09</div>
+          <div class="theme-name">Open Innovation</div><button class="theme-details-btn">Details</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THEME DETAILS MODAL -->
+  <div id="theme-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card">
+      <button id="modal-close" class="modal-close" aria-label="Close">&times;</button>
+      <div class="modal-image-wrap">
+        <img class="img-backdrop" id="modal-image-backdrop" src="" alt="" aria-hidden="true">
+        <img id="modal-image" src="" alt="">
+      </div>
+      <div class="modal-body">
+        <div class="kicker" id="modal-num"></div>
+        <h3 id="modal-title"></h3>
+        <p id="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <section id="flow">
+    <div class="blueprint"></div>
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">HOW IT RUNS</div>
+        <h2 class="sec-title">One continuous build, three stages</h2>
+      </div>
+      <div class="flow-stages" id="flow-stages">
+        <div class="flow-line">
+          <div class="flow-line-fill" id="flow-fill"></div>
+          <div class="flow-pulse" id="flow-pulse"></div>
+        </div>
+        <div class="flow-stage" data-stage="0">
+          <div class="flow-node"><svg viewBox="0 0 24 24">
+              <path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2Z" />
+            </svg></div>
+          <h4>Ideate</h4>
+          <p>Pick a theme, scope a real problem, sketch the concept and set your build plan.</p>
+        </div>
+        <div class="flow-stage" data-stage="1">
+          <div class="flow-node"><img class="flow-gear-icon" src="assets/images/logo/gear.webp" alt=""></div>
+          <h4>Design</h4>
+          <p>CAD, circuits, or code — get the design reviewed by mentors before you start fabricating.</p>
+        </div>
+        <div class="flow-stage" data-stage="2">
+          <div class="flow-node"><svg viewBox="0 0 24 24">
+              <path d="M12 2 2 7l10 5 10-5-10-5Z" />
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg></div>
+          <h4>Develop</h4>
+          <p>Build, test, and iterate the working prototype, then present it to the judging panel.</p>
+        </div>
+      </div>
+
+      <div class="rounds-label fade-in">The 6 rounds across 24 hours</div>
+      <div class="milestones fade-in">
+        <div class="milestone"><span class="m-day">Round 1</span><span class="m-title">Problem
+            Identification</span><span class="m-time">2 hrs</span></div>
+        <div class="milestone"><span class="m-day">Round 2</span><span class="m-title">Ideation &amp; Concept
+            Development</span><span class="m-time">4 hrs</span></div>
+        <div class="milestone"><span class="m-day">Round 3</span><span class="m-title">Design &amp; CAD</span><span
+            class="m-time">5 hrs</span></div>
+        <div class="milestone"><span class="m-day">Round 4</span><span class="m-title">Fabrication &amp; Prototype
+            Development</span><span class="m-time">15 hrs</span></div>
+        <div class="milestone"><span class="m-day">Round 5</span><span class="m-title">Testing &amp;
+            Improvement</span><span class="m-time">6 hrs</span></div>
+        <div class="milestone"><span class="m-day">Round 6</span><span class="m-title">Final Presentation &amp;
+            Evaluation</span><span class="m-time">3 hrs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules">
+    <div class="blueprint"></div>
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">RULES &amp; ELIGIBILITY</div>
+        <h2 class="sec-title">Before you sign up</h2>
+      </div>
+      <div class="rules-grid fade-in">
+        <div class="rule-card">
+          <h4>Eligibility</h4>
+          <p>Open to undergraduate engineering students.</p>
+        </div>
+        <div class="rule-card">
+          <h4>Team size</h4>
+          <p>2 to 5 members per team, from the same or different colleges.</p>
+        </div>
+        <div class="rule-card">
+          <h4>What to bring</h4>
+          <ul>
+            <li>Laptop and any personal tools</li>
+            <li>Valid college ID</li>
+            <li>Any pre-approved components (list to be confirmed)</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h4>Judging criteria</h4>
+          <ul>
+            <li>Originality and theme fit</li>
+            <li>Technical execution and working prototype</li>
+            <li>Real-world feasibility and impact</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard-strip"></div>
+
+  <!-- PRIZES -->
+  <section id="prizes">
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">REWARDS</div>
+        <h2 class="sec-title">What's on the table</h2>
+      </div>
+      <div class="prize-wrap fade-in">
+        <div class="prize-amount"><span data-count="50000" data-prefix="₹">₹0</span><small>TOTAL PRIZE POOL</small>
+        </div>
+        <ul class="prize-perks">
+          <li>Certificates of participation and merit for every team member</li>
+          <li>Direct feedback from faculty and industry mentors on your build</li>
+          <li>Recognition through NSRIT's Institution's Innovation Council</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTER -->
+  <section id="register">
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">REGISTRATION</div>
+        <h2 class="sec-title">Reserve your team's spot</h2>
+      </div>
+      <div class="reg-box fade-in">
+        <div style="position:relative; z-index:1;">
+          <h3 style="margin-bottom:10px;">Registration opens soon</h3>
+          <p style="max-width:420px; margin:0;">Registration happens through a short Google Form. Team leads should have
+            all member details and their chosen theme ready before starting it.</p>
+        </div>
+        <!-- TODO: replace "#" with your Google Form link once it's ready -->
+        <a href="#" id="register-link" target="_blank" rel="noopener" class="btn btn-primary"
+          style="position:relative; z-index:1;">Register now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COORDINATORS -->
+  <section id="coordinators">
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">CONTACTS</div>
+        <h2 class="sec-title">Coordinators</h2>
+      </div>
+      <div class="coord-cols fade-in">
+        <div class="coord-group">
+          <h3>Faculty coordinators</h3>
+          <div class="coord-item"><span>Mr.V.V.S.S.R Krishna Murthy</span><a href="tel:+919908266061">+91 99082
+              66061</a>
+          </div>
+          <div class="coord-item"><span>Mr.K.Ram Prasad</span><a href="tel:+917569323977">+91 75693 23977</a></div>
+          <div class="coord-item"><span>Mrs.B.Usha Rani</span><a href="tel:+919000920231">+91 90009 20231</a></div>
+        </div>
+        <div class="coord-group">
+          <h3>Student coordinators</h3>
+          <div class="coord-item"><span>Mr.CH.Vishnu Vardhan</span><a href="tel:+919381881744">+91 93818 81744</a></div>
+          <div class="coord-item"><span>Mr.D.Vignesh</span><a href="tel:+919347454265">+91 93474 54265</a></div>
+          <div class="coord-item"><span>Mr.D.Yeswanth</span><a href="tel:+918790640144">+91 87906 40144</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VENUE -->
+  <section id="venue">
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">VENUE</div>
+        <h2 class="sec-title">Where to show up</h2>
+      </div>
+      <div class="venue-wrap fade-in">
+        <div class="venue-info">
+          <h3 style="color:var(--volt-2); font-size:1.2rem;">NSRIT (Autonomous)</h3>
+          <p class="addr">Nadimpalli Satyanarayana Raju Institute of Technology<br>Pendurthi–Anandapuram Rd, Highway,
+            Sontyam,<br>Andhra Pradesh 530059</p>
+          <a href="https://maps.app.goo.gl/HRgiTcgK9RcSVtxt9" target="_blank" rel="noopener" class="btn btn-ghost"
+            style="width:fit-content;">Open in Google Maps</a>
+        </div>
+        <div class="venue-map">
+          <iframe loading="lazy"
+            src="https://maps.google.com/maps?q=Nadimpalli%20Satyanarayana%20Raju%20Institute%20of%20Technology%2C%20Sontyam%2C%20Andhra%20Pradesh%20530059&t=&z=15&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">GALLERY</div>
+        <h2 class="sec-title">From the workshop floor</h2>
+      </div>
+      <div class="gallery-carousel fade-in">
+        <div class="gallery-viewport">
+          <div class="gallery-track" id="gallery-track">
+            <div class="gallery-slide" data-src="assets/images/gallery/photo-1.jpg" data-tag="poster">
+              <img class="slide-backdrop" alt="" aria-hidden="true">
+              <img class="slide-fg" alt="Event photo 1">
+              <span class="gallery-tag">poster</span>
+            </div>
+            <div class="gallery-slide" data-src="assets/images/gallery/photo-2.jpg" data-tag="photo-2.jpg">
+              <img class="slide-backdrop" alt="" aria-hidden="true">
+              <img class="slide-fg" alt="Event photo 2">
+              <span class="gallery-tag">photo-2.jpg</span>
+            </div>
+            <div class="gallery-slide" data-src="assets/images/gallery/photo-3.jpg" data-tag="photo-3.jpg">
+              <img class="slide-backdrop" alt="" aria-hidden="true">
+              <img class="slide-fg" alt="Event photo 3">
+              <span class="gallery-tag">photo-3.jpg</span>
+            </div>
+            <div class="gallery-slide" data-src="assets/images/gallery/photo-4.jpg" data-tag="photo-4.jpg">
+              <img class="slide-backdrop" alt="" aria-hidden="true">
+              <img class="slide-fg" alt="Event photo 4">
+              <span class="gallery-tag">photo-4.jpg</span>
+            </div>
+            <div class="gallery-slide" data-src="assets/images/gallery/photo-5.jpg" data-tag="photo-5.jpg">
+              <img class="slide-backdrop" alt="" aria-hidden="true">
+              <img class="slide-fg" alt="Event photo 5">
+              <span class="gallery-tag">photo-5.jpg</span>
+            </div>
+            <div class="gallery-slide" data-src="assets/images/gallery/photo-6.jpg" data-tag="photo-6.jpg">
+              <img class="slide-backdrop" alt="" aria-hidden="true">
+              <img class="slide-fg" alt="Event photo 6">
+              <span class="gallery-tag">photo-6.jpg</span>
+            </div>
+          </div>
+          <button class="gallery-arrow prev" id="gallery-prev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+          <button class="gallery-arrow next" id="gallery-next" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+          <div class="gallery-progress">
+            <div class="gallery-progress-fill" id="gallery-progress-fill"></div>
+          </div>
+        </div>
+        <div class="gallery-dots" id="gallery-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY LIGHTBOX -->
+  <div id="gallery-lightbox" class="lightbox-overlay" aria-hidden="true">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightbox-image" class="lightbox-image" src="" alt="">
+  </div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head fade-in">
+        <div class="kicker">FAQ</div>
+        <h2 class="sec-title">Good to know</h2>
+      </div>
+
+      <div class="fade-in">
+
+        <div class="faq-item">
+          <button class="faq-q">
+            How will the projects be judged?
+            <span class="plus">+</span>
+          </button>
+          <div class="faq-a">
+            <p>
+              Projects will be evaluated based on factors such as innovation,
+              technical implementation, problem-solving, impact, and the quality
+              of the final presentation.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Will food and stay be arranged for the 24 hours?
+            <span class="plus">+</span>
+          </button>
+          <div class="faq-a">
+            <p>
+              Yes! Food, meals, and accommodation will be provided throughout the
+              24-hour hackathon, allowing participants to focus completely on building
+              their projects.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Can I switch themes after registering?
+            <span class="plus">+</span>
+          </button>
+          <div class="faq-a">
+            <p>
+              Themes are locked in at the kickoff. Teams are expected to work on their
+              selected theme throughout the hackathon.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Is there a registration fee?
+            <span class="plus">+</span>
+          </button>
+          <div class="faq-a">
+            <p>
+              Yes. The registration fee is ₹1,000 per participant. It includes hackathon
+              participation, meals, snacks, accommodation, and a participation certificate.
+            </p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">
+            Will I receive a certificate for participating?
+            <span class="plus">+</span>
+          </button>
+          <div class="faq-a">
+            <p>
+              Yes! Every participant who successfully completes the hackathon will receive
+              an official participation certificate.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="brand">
+      <span class="logo-mark logo-footer">
+        <img src="assets/images/logo/mech.webp" alt="MECH">
+        <img class="logo-gear" src="assets/images/logo/gear.webp" alt="O">
+        <img src="assets/images/logo/novate.webp" alt="NOVATE">
+      </span>
+    </div>
+    <p>Nadimpalli Satyanarayana Raju Institute of Technology (NSRIT) · Sontyam, Andhra Pradesh</p>
+    <p>© 2026 MECHONOVATE. Organized by the Department of Mechanical Engineering.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
