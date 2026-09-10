@@ -240,7 +240,7 @@ const THEME_DETAILS = {
   '01': {
     title: 'Agritech And Rural Innovation',
     image: 'assets/images/themes/theme-01.jpg',
-    description: 'Build mechanical or product solutions that improve farming, food processing, or rural livelihoods — from low-cost tools to smarter agricultural machinery.'
+    description: 'Build mechanical or product solutions that improve farming, food processing, or rural livelihoods — from low-cost tools to smarter agricultural machinery.',
     points: [
       'Statement 1 — Design a modular agricultural machine that can adjust its tool depth/position according to soil condition and crop spacing.',
       'Statement 2 — Develop a small ground robot that identifies crop rows and mechanically removes weeds without disturbing crops..',
