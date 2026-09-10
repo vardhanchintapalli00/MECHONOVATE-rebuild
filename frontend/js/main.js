@@ -240,19 +240,7 @@ const THEME_DETAILS = {
   '01': {
     title: 'Agritech And Rural Innovation',
     image: 'assets/images/themes/theme-01.jpg',
-    description: 'Build mechanical or product solutions that improve farming, food processing, or rural livelihoods — from low-cost tools to smarter agricultural machinery.',
-    points: [
-      'Statement 1 — Design a modular agricultural machine that can adjust its tool depth/position according to soil condition and crop spacing.',
-      'Statement 2 — Develop a small ground robot that identifies crop rows and mechanically removes weeds without disturbing crops..',
-      'Statement 3 — Create a mechanism that maintains uniform seed spacing and depth for different seed sizes..',
-      'Statement 4 — Design a compact machine that converts loose agricultural residue into dense transportable blocks..',
-      'Statement 5 — Develop a solar-based micro-power system that intelligently manages energy generated from solar panels and prioritizes essential agricultural loads such as irrigation, sensors, lighting and farm equipment during limited-power conditions...',
-      'Statement 6 — Develop an AI model that analyzes crop images captured through a smartphone and identifies early signs of common diseases or abnormalities, providing farmers with simple preventive recommendations...',
-      'Statement 7 — Develop a portable system that detects early signs of crop stress caused by water deficiency, nutrient imbalance, pests or disease and provides the farmer with a simple actionable recommendation...',
-      'Statement 8 — Design an intelligent irrigation system that combines soil moisture, weather, crop stage and water availability to determine where, when and how much water should be supplied, with automatic control of individual zones...',
-      'Statement 9 — Create a smart monitoring system that detects abnormal electrical conditions around agricultural pumps and field wiring, such as leakage, overload or unusual current behaviour, and provides an immediate warning to prevent equipment damage and electrical accidents...',
-      'Statement 10 — Create an intelligent platform that matches agricultural waste producers with nearby potential users such as composters, biofuel producers, livestock owners or small industries, reducing waste and improving rural income opportunities.x..'
-    ]
+    description: 'Build mechanical or product solutions that improve farming, food processing, or rural livelihoods — from low-cost tools to smarter agricultural machinery.'
   },
   '02': {
     title: 'Drone Technology',
