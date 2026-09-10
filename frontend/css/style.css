@@ -1619,6 +1619,83 @@ section {
   margin: 0;
 }
 
+/* ---------- THEME PROBLEM STATEMENTS ---------- */
+
+.theme-statements {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--steel);
+}
+
+.theme-statements-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.theme-statements-heading h4 {
+  margin: 0;
+  color: var(--volt-2);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.statement-line {
+  height: 1px;
+  flex: 1;
+  background: var(--steel);
+}
+
+.theme-points-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: theme-statement;
+  display: grid;
+  gap: 9px;
+}
+
+.theme-points-list li {
+  counter-increment: theme-statement;
+  position: relative;
+  padding: 12px 14px 12px 48px;
+  background: rgba(143, 166, 189, 0.045);
+  border: 1px solid rgba(143, 166, 189, 0.16);
+  color: var(--silver);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.91rem;
+  line-height: 1.55;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.theme-points-list li::before {
+  content: counter(theme-statement, decimal-leading-zero);
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 25px;
+  color: var(--plasma-2);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.theme-points-list li:hover {
+  background: rgba(217, 164, 74, 0.055);
+  border-color: var(--plasma-dim);
+  transform: translateX(3px);
+}
+
 /* ---------- GALLERY CAROUSEL ---------- */
 .gallery-carousel {
   position: relative;
@@ -2414,5 +2491,37 @@ footer p {
 @media (hover:hover) and (pointer:fine) {
   #cursor-glow {
     opacity: 1;
+  }
+}
+
+
+/* ---------- THEME PROBLEM STATEMENTS - MOBILE ---------- */
+
+@media (max-width: 640px) {
+  .theme-statements {
+    margin-top: 22px;
+    padding-top: 18px;
+  }
+
+  .theme-statements-heading {
+    gap: 8px;
+  }
+
+  .theme-statements-heading h4 {
+    font-size: 0.88rem;
+  }
+
+  .theme-points-list {
+    gap: 7px;
+  }
+
+  .theme-points-list li {
+    padding: 10px 10px 10px 43px;
+    font-size: 0.84rem;
+  }
+
+  .theme-points-list li::before {
+    left: 11px;
+    font-size: 0.68rem;
   }
 }
