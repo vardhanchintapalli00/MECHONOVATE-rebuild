@@ -360,6 +360,9 @@ const THEME_DETAILS = {
     title: 'Additive Manufacturing',
     image: 'assets/images/themes/theme-08.jpg',
     description: 'Automate a repetitive or manual process with sensors, actuators, or control logic — anywhere from a workshop floor to a household task.',
+    points: [
+      'Problem statements will be provided by industry experts one day prior to the commencement of the event. These challenges will be derived from real-world industrial scenarios and aligned with current industry needs, emerging technologies, and practical engineering requirements.'
+    ]
   },
   '09': {
     title: 'Open Innovation',
