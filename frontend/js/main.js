@@ -367,8 +367,10 @@ const THEME_DETAILS = {
   '09': {
     title: 'Open Innovation',
     image: 'assets/images/themes/theme-09.jpg',
-    description: 'Any real world problem worth solving that doesn\'t fit neatly into the other eight themes. Bring your own idea and make the case for it.',
-  }
+    description: 'An open platform to tackle emerging challenges beyond predefined themes through innovative, practical, and industry-relevant solutions..',
+    points: [
+      'Any real world problem worth solving that doesn\'t fit neatly into the other eight themes. Bring your own idea and make the case for it.'
+    ]
 };
 
 // Preload every theme photo as soon as the page loads.
