@@ -1421,6 +1421,17 @@ section {
   flex: 1;
 }
 
+.theme-points {
+  font-family: 'IBM Plex Mono';
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--plasma);
+  border: 1px solid var(--steel-light);
+  align-self: flex-start;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
 .theme-details-btn {
   align-self: flex-start;
   margin-top: auto;
