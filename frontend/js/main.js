@@ -357,7 +357,7 @@ const THEME_DETAILS = {
     ]
   },
   '08': {
-    title: 'Smart Automation',
+    title: 'Additive Manufacturing',
     image: 'assets/images/themes/theme-08.jpg',
     description: 'Automate a repetitive or manual process with sensors, actuators, or control logic — anywhere from a workshop floor to a household task.',
     points: [
@@ -405,6 +405,7 @@ const modalImageWrap = document.querySelector('.modal-image-wrap');
 const modalNum = document.getElementById('modal-num');
 const modalTitle = document.getElementById('modal-title');
 const modalDesc = document.getElementById('modal-desc');
+const modalPoints = document.getElementById('modal-points');
 const modalClose = document.getElementById('modal-close');
 
 function openThemeModal(id) {
@@ -415,6 +416,19 @@ function openThemeModal(id) {
   modalTitle.textContent = data.title;
   modalDesc.textContent = data.description;
   modalImage.alt = data.title;
+
+  // Clear and populate the 10 problem statements for the selected theme.
+  if (modalPoints) {
+    modalPoints.innerHTML = '';
+
+    if (Array.isArray(data.points)) {
+      data.points.forEach((point) => {
+        const li = document.createElement('li');
+        li.textContent = point;
+        modalPoints.appendChild(li);
+      });
+    }
+  }
 
   modalImageWrap.classList.remove('missing');
   modalImage.classList.remove('loaded');
