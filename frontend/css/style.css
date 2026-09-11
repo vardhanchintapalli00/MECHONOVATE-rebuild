@@ -1935,6 +1935,80 @@ section {
   color: var(--plasma);
 }
 
+/* ---------- IN ASSOCIATION (static logo row) ---------- */
+.assoc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .assoc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .assoc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.assoc-item {
+  position: relative;
+  height: clamp(80px, 14vh, 130px);
+  background: var(--panel);
+  border: 1px solid var(--steel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.assoc-item img.assoc-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(0.25);
+  transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.assoc-item img.assoc-img:hover {
+  filter: grayscale(0);
+  transform: scale(1.05);
+}
+
+.assoc-item.missing {
+  background: var(--panel-2);
+}
+
+.assoc-item.missing .slide-empty {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--silver-dim);
+}
+
+.assoc-item.missing .slide-empty svg {
+  width: 26px;
+  height: 26px;
+  opacity: 0.5;
+}
+
+.assoc-item.missing .slide-empty span {
+  font-family: 'IBM Plex Mono';
+  font-size: 0.65rem;
+  text-align: center;
+}
+
 /* ---------- FLOW / TIMELINE ---------- */
 #flow {
   background: var(--panel);

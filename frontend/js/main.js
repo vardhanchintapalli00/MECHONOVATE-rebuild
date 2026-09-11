@@ -258,7 +258,7 @@ const THEME_DETAILS = {
     title: 'Drone Technology',
     image: 'assets/images/themes/theme-02.jpg',
     description: 'Design or improve a drone — its frame, propulsion, payload mechanism, or control system — for a real inspection, delivery, agriculture, or safety use case.',
-   points: [
+    points: [
       'Statement1 — Develop a drone platform with a rapid mechanical payload-changing mechanism for delivery, inspection and sensing applications..',
       'Statement 2 — Develop a small UAV whose wing configuration can change between different flight conditions to improve efficiency..',
       'Statement 3 — Develop a lightweight adaptive landing mechanism that enables a drone to land safely on uneven, sloped or soft agricultural terrain without compromising stability...',
@@ -275,7 +275,7 @@ const THEME_DETAILS = {
     title: 'Industry 5.0',
     image: 'assets/images/themes/theme-03.jpg',
     description: 'Blend human-centered design with automation and smart systems — collaborative robots, adaptive manufacturing, or human-machine interfaces that put people back at the center.',
-   points: [
+    points: [
       'Statement 1 — Build a working prototype that detects the operators hand position and automatically presents, positions  or holds the required component/tool at the correct location during an assembly task, reducing unnecessary human movement...',
       'Statement 2 — Build a physical fixture that can automatically adjust its clamping points according to different component sizes/shapes, allowing multiple parts to be securely held without manual fixture adjustment...',
       'Statement 3 — Design a machine whose working module can be quickly replaced for different manufacturing operations..',
@@ -326,7 +326,7 @@ const THEME_DETAILS = {
     title: 'Renewable Energy And E.V\'s',
     image: 'assets/images/themes/theme-06.jpg',
     description: 'Create hardware for generating or storing renewable energy, or components that improve the range, safety, or efficiency of electric vehicles.',
-   points: [
+    points: [
       'Statement 1 — Develop a compact cooling system that maintains battery temperature uniformity during high-load operation..',
       'Statement 2 — Develop a suspension mechanism that converts part of suspension motion into usable electrical energy..',
       'Statement 3 — Develop a mechanical prototype that captures and stores energy normally lost during vehicle braking..',
@@ -624,5 +624,28 @@ document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') prev(true);
       if (e.key === 'ArrowRight') next(true);
     }
+  });
+})();
+
+// ===================== IN ASSOCIATION (static logos) =====================
+(function () {
+  const items = Array.from(document.querySelectorAll('#assoc-grid .assoc-item'));
+  if (!items.length) return;
+
+  items.forEach((item) => {
+    const src = item.dataset.src;
+    const img = item.querySelector('.assoc-img');
+    const tester = new Image();
+    tester.onload = () => { img.src = src; };
+    tester.onerror = () => {
+      item.classList.add('missing');
+      const tag = item.dataset.tag || 'Partner';
+      item.innerHTML = `
+        <div class="slide-empty">
+          <svg viewBox="0 0 200 200"><use href="#gear10" fill="currentColor"></use></svg>
+          <span>${tag} logo coming soon</span>
+        </div>`;
+    };
+    tester.src = src;
   });
 })();
